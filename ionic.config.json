@@ -1,0 +1,7 @@
+{
+  "name": "littleMaths",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
