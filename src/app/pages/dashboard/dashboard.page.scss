@@ -1,0 +1,17 @@
+div.app {
+    width: auto;
+    min-height: 128px;
+    border-radius: 4px;
+    background-color: red;
+    text-align: center;
+    cursor: pointer;
+
+    div {
+        &.symbol {
+            font-weight: 600;
+            font-size: 8em;
+            height: 96px;
+            line-height: .6em;
+        }
+    }
+}

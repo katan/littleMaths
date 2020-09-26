@@ -12,6 +12,9 @@
     "e2e": "ng e2e"
   },
   "private": true,
+  "config": {
+    "ionic_webpack": "./webpack.config.js"
+  },
   "dependencies": {
     "@angular/common": "~10.0.0",
     "@angular/core": "~10.0.0",
