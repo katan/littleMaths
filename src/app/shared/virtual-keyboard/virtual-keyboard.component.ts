@@ -37,7 +37,7 @@ export class VirtualKeyboardComponent {
       this.currentValue = this.getOperation(this.currentOperation);
     }
     this.displayValue = this.currentValue.toString();
-    this.value.emit(this.currentValue);
+    this.results.emit(this.currentValue);
     this.resetValues();
   }
 
@@ -45,6 +45,7 @@ export class VirtualKeyboardComponent {
     this.resetValues();
     this.displayValue = '';
     this.currentValue = 0;
+    this.value.emit(this.currentValue);
   }
 
   private resetValues() {

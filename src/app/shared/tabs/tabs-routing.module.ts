@@ -28,6 +28,10 @@ const routes: Routes = [
         loadChildren: () => import('@pages/multiplication-tables/multiplication-tables.module').then(m => m.MultiplicationTablesModule)
       },
       {
+        path: 'random-challenge',
+        loadChildren: () => import('@pages/random-challenge/random-challenge.module').then( m => m.RandomChallengePageModule)
+      },
+      {
         path: '',
         redirectTo: '/tabs/dashboard',
         pathMatch: 'full'

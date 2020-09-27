@@ -1,11 +1,15 @@
 <ion-list>
   <ion-list-header>Multiplications</ion-list-header>
   <ion-item button (click)="routerTo('multiplication-tables')">
-    <a [routerLink]="['/tabs/multiplication-tables']">
+    <a>
       Show multiplication tables
     </a>
   </ion-item>
   <ion-item button>New challenge</ion-item>
-  <ion-item button>Random challenge ({{ randomChallenges }})</ion-item>
+  <ion-item button (click)="routerTo('random-challenge')">
+    <a>
+      Random challenge ({{ randomChallenges }})
+    </a>
+  </ion-item>
   <ion-item button>Countdown challenge ({{ countdownChallenges }}s)</ion-item>
 </ion-list>
