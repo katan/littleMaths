@@ -1,6 +1,10 @@
 <ion-list>
   <ion-list-header>Multiplications</ion-list-header>
-  <ion-item button>Show multiplication tables</ion-item>
+  <ion-item button (click)="routerTo('multiplication-tables')">
+    <a [routerLink]="['/tabs/multiplication-tables']">
+      Show multiplication tables
+    </a>
+  </ion-item>
   <ion-item button>Challenge (10)</ion-item>
   <ion-item button>Countdown challenge</ion-item>
   <ion-item button>Option 4</ion-item>

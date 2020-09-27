@@ -1,4 +1,4 @@
-import { Component, ComponentRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 
 import { MultiplicationPopoverComponent } from './multiplication/multiplication.popover.component';
@@ -13,16 +13,23 @@ const Maths = {
   styleUrls: ['dashboard.page.scss']
 })
 export class DashboardPage {
+  private popover: HTMLIonPopoverElement;
 
   constructor(private popoverController: PopoverController) {}
 
   async showPopover(ev: any, component: string) {
-    const popover = await this.popoverController.create({
+    this.popover = await this.popoverController.create({
       component: Maths[component],
-      cssClass: 'my-custom-class',
       event: ev,
-      translucent: true
+      translucent: true,
+      componentProps: {
+        dashboardPage: this
+      }
     });
-    return await popover.present();
+    return await this.popover.present();
+  }
+
+  dismissPopover() {
+    this.popover.dismiss();
   }
 }

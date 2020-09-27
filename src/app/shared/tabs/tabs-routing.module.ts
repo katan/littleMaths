@@ -20,6 +20,10 @@ const routes: Routes = [
         loadChildren: () => import('@pages/settings/settings.module').then(m => m.SettingsPageModule)
       },
       {
+        path: 'multiplication-tables',
+        loadChildren: () => import('@pages/multiplication-tables/multiplication-tables.module').then(m => m.MultiplicationTablesModule)
+      },
+      {
         path: '',
         redirectTo: '/tabs/dashboard',
         pathMatch: 'full'

@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { DashboardPage } from './dashboard.page';
 import { ExploreContainerComponentModule } from '@shared/explore-container/explore-container.module';
 
-import { Tab1PageRoutingModule } from './dashboard-routing.module';
+import { DashboardPageRoutingModule } from './dashboard-routing.module';
 
 @NgModule({
   imports: [
@@ -13,7 +13,7 @@ import { Tab1PageRoutingModule } from './dashboard-routing.module';
     CommonModule,
     FormsModule,
     ExploreContainerComponentModule,
-    Tab1PageRoutingModule
+    DashboardPageRoutingModule
   ],
   declarations: [DashboardPage]
 })

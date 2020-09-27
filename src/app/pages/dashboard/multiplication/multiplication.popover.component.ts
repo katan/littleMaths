@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { NavParams, PopoverController } from '@ionic/angular';
+import { DashboardPage } from '../dashboard.page';
 
 @Component({
   selector: 'app-multiplication.popover',
@@ -7,8 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MultiplicationPopoverComponent implements OnInit {
 
-  constructor() { }
+  constructor(public navParams: NavParams, private router: Router) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.navParams.get('popoverElement'));
+  }
 
+  async routerTo(page: string) {
+    const dashboardPage: DashboardPage = this.navParams.get('dashboardPage');
+    dashboardPage.dismissPopover();
+    this.router.navigateByUrl(`/tabs/${page}`);
+  }
 }
