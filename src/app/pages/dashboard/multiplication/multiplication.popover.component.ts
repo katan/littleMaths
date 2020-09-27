@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NavParams, PopoverController } from '@ionic/angular';
+import { SettingsService } from '@app/services/settings.service';
+import { NavParams } from '@ionic/angular';
 import { DashboardPage } from '../dashboard.page';
 
 @Component({
@@ -9,11 +10,18 @@ import { DashboardPage } from '../dashboard.page';
   styleUrls: ['./multiplication.popover.component.scss'],
 })
 export class MultiplicationPopoverComponent implements OnInit {
+  randomChallenges: number;
+  countdownChallenges: number;
 
-  constructor(public navParams: NavParams, private router: Router) { }
+  constructor(
+    private navParams: NavParams,
+    private router: Router,
+    private settings: SettingsService
+  ) { }
 
   ngOnInit() {
-    console.log(this.navParams.get('popoverElement'));
+    this.randomChallenges = this.settings.get('randomChallenges');
+    this.countdownChallenges = this.settings.get('countdownChallenges');
   }
 
   async routerTo(page: string) {
