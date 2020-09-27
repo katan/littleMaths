@@ -1,0 +1,65 @@
+<div id="virtualKeyboardWrapper">
+  <div *ngIf="operations" class="display">
+    <span>{{ displayValue }}</span>
+  </div>
+  <ion-grid>
+    <!-- keys 1 to 9 & operations -->
+    <ion-row>
+      <ion-col *ngFor="let i of [1,2,3]">
+        <ion-button (click)="addValue(i)" expand="block">{{ i }}</ion-button>
+      </ion-col>
+      <ion-col *ngIf="operations">
+        <ion-button (click)="addOperation(operation.summation)" expand="block" color="secondary">
+          {{ operation.summation }}
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col *ngFor="let i of [4,5,6]">
+        <ion-button (click)="addValue(i)" expand="block">{{ i }}</ion-button>
+      </ion-col>
+      <ion-col *ngIf="operations">
+        <ion-button (click)="addOperation(operation.subtraction)" expand="block" color="secondary">
+          {{ operation.subtraction }}
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col *ngFor="let i of [7,8,9]">
+        <ion-button (click)="addValue(i)" expand="block">{{ i }}</ion-button>
+      </ion-col>
+      <ion-col *ngIf="operations">
+        <ion-button (click)="addOperation(operation.multiplication)" expand="block" color="secondary">
+          {{ operation.multiplication }}
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col [size]="operations ? 9 : 4">
+        <ion-button (click)="addValue(0)" expand="block">0</ion-button>
+      </ion-col>
+      <ion-col *ngIf="!operations">
+        <ion-button (click)="submit()" expand="block">Submit</ion-button>
+      </ion-col>
+      <ng-container *ngIf="operations">
+        <ion-col size="3">
+          <ion-button (click)="addOperation(operation.division)" expand="block" color="secondary">
+            {{ operation.division }}
+          </ion-button>
+        </ion-col>
+      </ng-container>
+    </ion-row>
+
+    <ng-container *ngIf="operations">
+      <ion-row>
+        <ion-col size="3">
+          <ion-button (click)="clear()" expand="block" color="secondary">{{ operation.CE }}</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button (click)="submit()" expand="block" color="secondary">{{ operation.equal }}</ion-button>
+        </ion-col>
+      </ion-row>
+    </ng-container>
+  </ion-grid>
+</div>

@@ -1,0 +1,20 @@
+#virtualKeyboardWrapper {
+    .display {
+        width: 100%;
+        min-height: 96px;
+        padding: 2%;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 3em;
+        text-align: right;
+        vertical-align: middle;
+        background-color: #222;
+    }
+
+    ion-col {
+        ion-button {
+            min-height: 64px;
+            font-size: 2.33em;
+            font-size: 600;
+        }
+    }
+}
