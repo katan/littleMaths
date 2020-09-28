@@ -15,6 +15,7 @@ export class RandomChallengePage implements ViewDidEnter, ViewDidLeave {
   userValue: number;
   userAnswer: number;
   question: string;
+  timeElapsed: number;
 
   @ViewChild('keyboard') keyboard: VirtualKeyboardComponent;
 
@@ -36,6 +37,7 @@ export class RandomChallengePage implements ViewDidEnter, ViewDidLeave {
   }
 
   ionViewDidLeave() {
+    this.userValue = null;
     this.iteratorService.clear();
   }
 
@@ -50,8 +52,7 @@ export class RandomChallengePage implements ViewDidEnter, ViewDidLeave {
     if (this.currentIteration <= this.totalIterations) {
       this.nextQuestion();
     } else {
-      console.log(this.iteratorService.userAnswers);
-      console.log(this.iteratorService.correctAnswers);
+      this.timeElapsed = this.iteratorService.getTimeElapsed();
     }
   }
 
@@ -70,6 +71,7 @@ export class RandomChallengePage implements ViewDidEnter, ViewDidLeave {
   private initialize() {
     this.iteratorService.iterations = this.settingsService.get('randomChallenges');
     this.generateQuestion();
+    this.iteratorService.startTime();
   }
 
   private generateQuestion() {

@@ -10,8 +10,13 @@ export class IteratorService {
   questions: string[] = [];
   correctAnswers: number[] = [];
   userAnswers: number[] = [];
+  time: Date;
 
   constructor() { }
+
+  startTime() {
+    this.time = new Date();
+  }
 
   addAnswer(answer: number) {
     this.userAnswers.push(answer);
@@ -38,6 +43,13 @@ export class IteratorService {
     this.questions = [];
     this.correctAnswers = [];
     this.userAnswers = [];
+    this.time = null;
+  }
+
+  getTimeElapsed(): number {
+    const endTime = new Date();
+    const timeDiff = (endTime.getTime() - this.time.getTime()) / 1000;
+    return Math.round(timeDiff);
   }
 
   private generateMultiplication(base: number): Array<number | string> {

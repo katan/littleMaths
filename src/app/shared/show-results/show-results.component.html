@@ -1,5 +1,10 @@
 <ion-list class="results">
-  <ion-list-header>{{ header }}</ion-list-header>
+  <ion-list-header>
+    <h3 *ngIf="header">{{ header }}</h3>
+    <h4>
+      {{ correctAnswersCount }} of {{ userAnswers.length }} answers are correct in {{ timeElapsed }} seconds
+    </h4>
+  </ion-list-header>
   <ion-item *ngFor="let question of questions; index as i">
     <!-- Icon -->
     <ion-avatar slot="start">
@@ -15,7 +20,7 @@
 
     <!-- Question & answer -->
     <ion-label>
-      <h2>{{ question }} = {{ userAnswers[i] }}</h2>
+      <h3>{{ question }} = {{ userAnswers[i] }}</h3>
       <p *ngIf="userAnswers[i] !== correctAnswers[i]">
         The correct answer is: {{ correctAnswers[i] }}
       </p>

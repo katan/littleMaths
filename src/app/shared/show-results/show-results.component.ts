@@ -6,9 +6,10 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./show-results.component.scss'],
 })
 export class ShowResultsComponent implements OnInit {
+  correctAnswersCount = 0;
 
-  @Input() header: string;
-  @Input() timelapse: number;
+  @Input() header?: string;
+  @Input() timeElapsed: number;
   @Input() questions: string[];
   @Input() userAnswers: number[];
   @Input() correctAnswers: number[];
@@ -16,11 +17,10 @@ export class ShowResultsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.header)
-    console.log(this.timelapse)
-    console.log(this.questions)
-    console.log(this.userAnswers)
-    console.log(this.correctAnswers)
+    this.userAnswers.forEach((answer: number, index: number) => {
+      if (answer === this.correctAnswers[index]) {
+        this.correctAnswersCount++;
+      }
+    });
   }
-
 }
