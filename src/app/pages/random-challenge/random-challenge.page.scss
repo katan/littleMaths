@@ -1,0 +1,10 @@
+ion-footer {
+    padding: 12px;
+
+    ion-button {
+        &.newChallenge {
+            height: 48px;
+            font-size: 1.2em;
+        }
+    }
+}

@@ -4,8 +4,8 @@
       <a routerLink="/tabs/dashboard">
         <ion-icon name="apps"></ion-icon>
         <span>Dashboard</span>
-      </a> 
-      <span> | Random Challenge 
+      </a>
+      <span> | Random Challenge
         {{ currentIteration <= totalIterations && '('+currentIteration+'/'+totalIterations+')' || ' Results' }}
       </span>
     </ion-title>
@@ -38,6 +38,6 @@
     <app-virtual-keyboard #keyboard (value)="insertValue($event)" (results)="insertResult($event)"></app-virtual-keyboard>
   </ng-container>
   <ng-container *ngIf="currentIteration > totalIterations">
-    <ion-button expand="block" (click)="newChallenge()">New Challenge</ion-button>
+    <ion-button expand="block" class="newChallenge" (click)="newChallenge()">New Challenge</ion-button>
   </ng-container>
 </ion-footer>
