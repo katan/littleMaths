@@ -26,9 +26,16 @@
       </ion-item>
     </ion-col>
   </ion-row>
-  <!-- results -->
-  <ion-row>
 
+  <!-- results -->
+  <ion-row *ngIf="currentIteration > totalIterations">
+    <app-show-results
+      [header]="'Results for random challenge'"
+      [timelapse]="1234567"
+      [questions]="iteratorService.questions"
+      [userAnswers]="iteratorService.userAnswers"
+      [correctAnswers]="iteratorService.correctAnswers">
+    </app-show-results>
   </ion-row>
 </ion-content>
 

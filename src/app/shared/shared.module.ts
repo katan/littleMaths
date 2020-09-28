@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { VirtualKeyboardComponent } from '@shared/virtual-keyboard/virtual-keyboard.component';
+import { ShowResultsComponent } from './show-results/show-results.component';
 
 @NgModule({
     imports: [
@@ -10,10 +11,12 @@ import { VirtualKeyboardComponent } from '@shared/virtual-keyboard/virtual-keybo
         CommonModule
     ],
     exports: [
-        VirtualKeyboardComponent
+        VirtualKeyboardComponent,
+        ShowResultsComponent
     ],
     declarations: [
-        VirtualKeyboardComponent
+        VirtualKeyboardComponent,
+        ShowResultsComponent
     ]
 })
-export class SharedModule {}
+export class SharedModule { }
