@@ -24,3 +24,19 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+
+app-show-results {
+    width: 100%;
+}
+
+ion-footer.challenge {
+    padding: 12px;
+
+    ion-button {
+        &.newChallenge {
+            height: 48px;
+            font-size: 1.2em;
+        }
+    }
+}

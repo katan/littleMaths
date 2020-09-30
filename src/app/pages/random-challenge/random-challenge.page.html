@@ -30,7 +30,7 @@
 </ion-content>
 
 <!-- virtual keyboard -->
-<ion-footer>
+<ion-footer class="challenge">
   <ng-container *ngIf="currentIteration <= totalIterations">
     <app-virtual-keyboard #keyboard (value)="insertValue($event)" (results)="insertResult($event)"></app-virtual-keyboard>
   </ng-container>
