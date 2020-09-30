@@ -32,6 +32,10 @@ const routes: Routes = [
         loadChildren: () => import('@pages/random-challenge/random-challenge.module').then( m => m.RandomChallengePageModule)
       },
       {
+        path: 'countdown-challenge',
+        loadChildren: () => import('@pages/countdown-challenge/countdown-challenge.module').then( m => m.CountdownChallengePageModule)
+      },
+      {
         path: '',
         redirectTo: '/tabs/dashboard',
         pathMatch: 'full'
