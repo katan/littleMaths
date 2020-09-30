@@ -1,0 +1,45 @@
+<ng-container class="challengeWrapper">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>
+        <a routerLink="/tabs/dashboard">
+          <ion-icon name="apps"></ion-icon>
+          <span>Dashboard</span>
+        </a>
+        <span> 
+          | Countdown challenge 
+          <span *ngIf="countdownStart">finish in {{ countdown }} seconds</span>
+          <span *ngIf="!countdownStart">finished</span>
+        </span>
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <!-- questions -->
+    <app-show-question *ngIf="countdownStart"
+      [question]="question" [answer]="userValue">
+    </app-show-question>
+
+    <!-- results -->
+    <ion-row *ngIf="!countdownStart">
+      <app-show-results
+        [countdown]="true"
+        [timeElapsed]="timeElapsed"
+        [questions]="iteratorService.questions"
+        [userAnswers]="iteratorService.userAnswers"
+        [correctAnswers]="iteratorService.correctAnswers">
+      </app-show-results>
+    </ion-row>
+  </ion-content>
+
+  <!-- virtual keyboard -->
+  <ion-footer class="challenge">
+    <ng-container *ngIf="countdownStart">
+      <app-virtual-keyboard #keyboard (value)="insertValue($event)" (results)="insertResult($event)"></app-virtual-keyboard>
+    </ng-container>
+    <ng-container *ngIf="!countdownStart">
+      <ion-button expand="block" class="newChallenge" (click)="newChallenge()">New Challenge</ion-button>
+    </ng-container>
+  </ion-footer>
+</ng-container>

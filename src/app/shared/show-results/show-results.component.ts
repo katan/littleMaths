@@ -9,6 +9,7 @@ export class ShowResultsComponent implements OnInit {
   correctAnswersCount = 0;
 
   @Input() header?: string;
+  @Input() countdown = false;
   @Input() timeElapsed: number;
   @Input() questions: string[];
   @Input() userAnswers: number[];

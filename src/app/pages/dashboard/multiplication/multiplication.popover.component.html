@@ -11,5 +11,9 @@
       Random challenge ({{ randomChallenges }})
     </a>
   </ion-item>
-  <ion-item button>Countdown challenge ({{ countdownChallenges }}s)</ion-item>
+  <ion-item button (click)="routerTo('countdown-challenge')">
+    <a>
+      Countdown challenge ({{ countdownChallenges }}s)
+    </a>
+  </ion-item>
 </ion-list>

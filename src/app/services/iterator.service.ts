@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 
 import { Operation } from '@app/shared/constants';
+import { interval, Subject, Subscription } from 'rxjs';
 
 @Injectable()
 export class IteratorService {
-  countdown = 0;
+  countdown: number;
+  countdown$: Subject<void> = new Subject();
   iterations = 0;
   currentIteration = 0;
   questions: string[] = [];
@@ -12,10 +14,29 @@ export class IteratorService {
   userAnswers: number[] = [];
   time: Date;
 
+  private timer: Subscription;
+
   constructor() { }
 
   startTime() {
     this.time = new Date();
+  }
+
+  startCountdown(countdown: number) {
+    this.countdown = countdown;
+    this.timer = interval(1000).subscribe(
+      () => {
+        countdown--;
+        this.countdown = countdown;
+
+        if (countdown <= 0) {
+          this.countdown$.next();
+        }
+      });
+  }
+
+  stopCountdown() {
+    this.timer.unsubscribe();
   }
 
   addAnswer(answer: number) {
@@ -37,7 +58,6 @@ export class IteratorService {
   }
 
   clear() {
-    this.countdown = 0;
     this.iterations = 0;
     this.currentIteration = 0;
     this.questions = [];

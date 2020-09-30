@@ -2,7 +2,11 @@
   <ion-list-header>
     <h3 *ngIf="header">{{ header }}</h3>
     <h4>
-      {{ correctAnswersCount }} of {{ userAnswers.length }} answers are correct in {{ timeElapsed }} seconds
+      <span *ngIf="countdown">{{ correctAnswersCount }}</span>
+      <span *ngIf="!countdown">
+        {{ correctAnswersCount }} of {{ userAnswers.length }}
+      </span>
+      answers are correct in {{ timeElapsed }} seconds
     </h4>
   </ion-list-header>
   <ion-item *ngFor="let question of questions; index as i">
