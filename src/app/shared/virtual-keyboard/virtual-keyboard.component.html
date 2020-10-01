@@ -5,30 +5,30 @@
   <ion-grid>
     <!-- keys 1 to 9 & operations -->
     <ion-row>
-      <ion-col *ngFor="let i of [1,2,3]">
+      <ion-col *ngFor="let i of [1,2,3]" [size]="operations ? 3 : 4">
         <ion-button (click)="addValue(i)" expand="block">{{ i }}</ion-button>
       </ion-col>
-      <ion-col *ngIf="operations">
+      <ion-col *ngIf="operations" size="3">
         <ion-button (click)="addOperation(operation.summation)" expand="block" color="secondary">
           {{ operation.summation }}
         </ion-button>
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col *ngFor="let i of [4,5,6]">
+      <ion-col *ngFor="let i of [4,5,6]" [size]="operations ? 3 : 4">
         <ion-button (click)="addValue(i)" expand="block">{{ i }}</ion-button>
       </ion-col>
-      <ion-col *ngIf="operations">
+      <ion-col *ngIf="operations" size="3">
         <ion-button (click)="addOperation(operation.subtraction)" expand="block" color="secondary">
           {{ operation.subtraction }}
         </ion-button>
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col *ngFor="let i of [7,8,9]">
+      <ion-col *ngFor="let i of [7,8,9]" [size]="operations ? 3 : 4">
         <ion-button (click)="addValue(i)" expand="block">{{ i }}</ion-button>
       </ion-col>
-      <ion-col *ngIf="operations">
+      <ion-col *ngIf="operations" size="3">
         <ion-button (click)="addOperation(operation.multiplication)" expand="block" color="secondary">
           {{ operation.multiplication }}
         </ion-button>
