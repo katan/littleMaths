@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { VirtualKeyboardComponent } from '@shared/virtual-keyboard/virtual-keyboard.component';
 import { ShowResultsComponent } from './show-results/show-results.component';
 import { ShowQuestionComponent } from './show-question/show-question.component';
+import { ShowCountdownComponent } from './show-countdown/show-countdown.component';
 
 @NgModule({
     imports: [
@@ -14,12 +15,14 @@ import { ShowQuestionComponent } from './show-question/show-question.component';
     exports: [
         VirtualKeyboardComponent,
         ShowQuestionComponent,
-        ShowResultsComponent
+        ShowResultsComponent,
+        ShowCountdownComponent
     ],
     declarations: [
         VirtualKeyboardComponent,
         ShowQuestionComponent,
-        ShowResultsComponent
+        ShowResultsComponent,
+        ShowCountdownComponent
     ]
 })
 export class SharedModule { }
