@@ -29,6 +29,7 @@ export class CountdownChallengePage extends Challenge implements ViewDidEnter, V
 
   ionViewDidLeave() {
     this.iteratorService.clear();
+    this.iteratorService.stopCountdown();
   }
 
   nextQuestion() {

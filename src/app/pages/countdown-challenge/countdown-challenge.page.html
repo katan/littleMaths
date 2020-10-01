@@ -6,16 +6,15 @@
           <ion-icon name="apps"></ion-icon>
           <span>Dashboard</span>
         </a>
-        <span> 
-          | Countdown challenge 
-          <span *ngIf="countdownStart">finish in {{ countdown }} seconds</span>
-          <span *ngIf="!countdownStart">finished</span>
-        </span>
+        <span> | Countdown challenge </span>
       </ion-title>
     </ion-toolbar>
   </ion-header>
 
   <ion-content>
+    <!-- show countdown -->
+    <app-show-countdown [countdown]="countdown" *ngIf="countdownStart"></app-show-countdown>
+
     <!-- questions -->
     <app-show-question *ngIf="countdownStart"
       [question]="question" [answer]="userValue">
