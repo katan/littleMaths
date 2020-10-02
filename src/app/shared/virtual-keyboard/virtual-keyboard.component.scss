@@ -18,4 +18,10 @@
             font-size: 600;
         }
     }
+
+    ion-icon {
+        &[name~=backspace] {
+            min-width: 36px;
+        }
+    }
 }

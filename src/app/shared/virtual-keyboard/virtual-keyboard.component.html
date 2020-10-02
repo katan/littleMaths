@@ -1,34 +1,34 @@
 <div id="virtualKeyboardWrapper">
-  <div *ngIf="operations" class="display">
+  <div *ngIf="showOperations" class="display">
     <span>{{ displayValue }}</span>
   </div>
   <ion-grid>
-    <!-- keys 1 to 9 & operations -->
+    <!-- keys 1 to 9 & showOperations -->
     <ion-row>
-      <ion-col *ngFor="let i of [1,2,3]" [size]="operations ? 3 : 4">
+      <ion-col *ngFor="let i of [1,2,3]" [size]="showOperations ? 3 : 4">
         <ion-button (click)="addValue(i)" expand="block">{{ i }}</ion-button>
       </ion-col>
-      <ion-col *ngIf="operations" size="3">
+      <ion-col *ngIf="showOperations" size="3">
         <ion-button (click)="addOperation(operation.summation)" expand="block" color="secondary">
           {{ operation.summation }}
         </ion-button>
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col *ngFor="let i of [4,5,6]" [size]="operations ? 3 : 4">
+      <ion-col *ngFor="let i of [4,5,6]" [size]="showOperations ? 3 : 4">
         <ion-button (click)="addValue(i)" expand="block">{{ i }}</ion-button>
       </ion-col>
-      <ion-col *ngIf="operations" size="3">
+      <ion-col *ngIf="showOperations" size="3">
         <ion-button (click)="addOperation(operation.subtraction)" expand="block" color="secondary">
           {{ operation.subtraction }}
         </ion-button>
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col *ngFor="let i of [7,8,9]" [size]="operations ? 3 : 4">
+      <ion-col *ngFor="let i of [7,8,9]" [size]="showOperations ? 3 : 4">
         <ion-button (click)="addValue(i)" expand="block">{{ i }}</ion-button>
       </ion-col>
-      <ion-col *ngIf="operations" size="3">
+      <ion-col *ngIf="showOperations" size="3">
         <ion-button (click)="addOperation(operation.multiplication)" expand="block" color="secondary">
           {{ operation.multiplication }}
         </ion-button>
@@ -36,12 +36,14 @@
     </ion-row>
 
     <ion-row>
-      <ion-col [size]="operations ? 9 : 4">
+      <ion-col [size]="showOperations ? 9 : 4">
         <ion-button (click)="addValue(0)" expand="block">0</ion-button>
       </ion-col>
-      <ng-container *ngIf="!operations">
+      <ng-container *ngIf="!showOperations">
         <ion-col size="4">
-          <ion-button (click)="clear()" color="secondary" expand="block">{{ operation.CE }}</ion-button>
+          <ion-button (click)="backspace()" color="secondary" expand="block">
+            <ion-icon name="backspace"></ion-icon>
+          </ion-button>
         </ion-col>
         <ion-col size="4">
           <ion-button (click)="submit()" color="secondary" expand="block">
@@ -49,7 +51,7 @@
           </ion-button>
         </ion-col>
       </ng-container>
-      <ng-container *ngIf="operations">
+      <ng-container *ngIf="showOperations">
         <ion-col size="3">
           <ion-button (click)="addOperation(operation.division)" expand="block" color="secondary">
             {{ operation.division }}
@@ -58,10 +60,15 @@
       </ng-container>
     </ion-row>
 
-    <ng-container *ngIf="operations">
+    <ng-container *ngIf="showOperations">
       <ion-row>
         <ion-col size="3">
           <ion-button (click)="clear()" expand="block" color="secondary">{{ operation.CE }}</ion-button>
+        </ion-col>
+        <ion-col size="3">
+          <ion-button (click)="backspace()" expand="block" color="secondary">
+            <ion-icon name="backspace"></ion-icon>
+          </ion-button>
         </ion-col>
         <ion-col>
           <ion-button (click)="submit()" expand="block" color="secondary">{{ operation.equal }}</ion-button>
