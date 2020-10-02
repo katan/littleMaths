@@ -40,8 +40,7 @@ export class CountdownChallengePage extends Challenge implements ViewDidEnter, V
   }
 
   newChallenge() {
-    this.userValue = null;
-    this.challengeService.clear();
+    super.newChallenge();
     this.initialize();
   }
 
@@ -59,6 +58,7 @@ export class CountdownChallengePage extends Challenge implements ViewDidEnter, V
         this.countdownStart = false;
         this.timeElapsed = this.challengeService.getTimeElapsed();
         this.challengeService.stopCountdown();
+        this.waitToStartNewChallenge();
       }
     );
   }

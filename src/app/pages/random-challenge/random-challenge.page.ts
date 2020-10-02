@@ -37,8 +37,7 @@ export class RandomChallengePage extends Challenge implements ViewDidEnter, View
   }
 
   newChallenge() {
-    this.userValue = null;
-    this.challenggeService.clear();
+    super.newChallenge();
     this.initialize();
   }
 
