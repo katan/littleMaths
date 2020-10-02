@@ -1,0 +1,8 @@
+<ion-button expand="block" class="newChallenge" (click)="newChallengeOutput()" [disabled]="!enableNewChallenge">
+  <span *ngIf="!enableNewChallenge">
+    Wait {{ countdown }} seconds ...
+  </span>
+  <span *ngIf="enableNewChallenge">
+    New Challenge
+  </span>
+</ion-button>

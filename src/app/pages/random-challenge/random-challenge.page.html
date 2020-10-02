@@ -25,12 +25,18 @@
   </ion-row>
 </ion-content>
 
-<!-- virtual keyboard -->
 <ion-footer class="challenge">
+  <!-- virtual keyboard -->
   <ng-container *ngIf="currentIteration <= totalIterations">
     <app-virtual-keyboard #keyboard (value)="insertValue($event)" (results)="insertResult($event)"></app-virtual-keyboard>
   </ng-container>
+
+  <!-- New challenge -->
   <ng-container *ngIf="currentIteration > totalIterations">
-    <ion-button expand="block" class="newChallenge" (click)="newChallenge()">New Challenge</ion-button>
+    <app-show-new-challenge (newChallenge)="newChallenge()"
+        [enableNewChallenge]="enableNewChallenge"
+        [countdown]="waitToEnableNewChallenge">
+      </app-show-new-challenge>
   </ng-container>
+
 </ion-footer>
