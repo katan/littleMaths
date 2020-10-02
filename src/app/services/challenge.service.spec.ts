@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { IteratorService } from './iterator.service';
+import { ChallengeService } from './challenge.service';
 
 describe('IteratorService', () => {
-  let service: IteratorService;
+  let service: ChallengeService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(IteratorService);
+    service = TestBed.inject(ChallengeService);
   });
 
   it('should be created', () => {

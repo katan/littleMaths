@@ -3,7 +3,7 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
-import { SettingsService } from './services/settings.service';
+import { LocalStorageService } from './services/local-storage.service';
 import { appConfig } from './app.config';
 
 @Component({
@@ -16,7 +16,7 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private settings: SettingsService
+    private localStorage: LocalStorageService
   ) {
     this.initializeApp();
   }
@@ -30,13 +30,13 @@ export class AppComponent {
   }
 
   private createSettings() {
-    if (!this.settings.hasSettings) {
-      this.settings.set('version', appConfig.version);
-      this.settings.set('languages', JSON.stringify(appConfig.languages));
-      this.settings.set('cultureCodes', JSON.stringify(appConfig.cultureCodes));
-      this.settings.set('currentLanguage', appConfig.currentLanguage);
-      this.settings.set('randomChallenges', appConfig.randomChallenges);
-      this.settings.set('countdownChallenges', appConfig.countdownChallenges);
+    if (!this.localStorage.hasSettings) {
+      this.localStorage.set('version', appConfig.version);
+      this.localStorage.set('languages', JSON.stringify(appConfig.languages));
+      this.localStorage.set('cultureCodes', JSON.stringify(appConfig.cultureCodes));
+      this.localStorage.set('currentLanguage', appConfig.currentLanguage);
+      this.localStorage.set('randomChallenges', appConfig.randomChallenges);
+      this.localStorage.set('countdownChallenges', appConfig.countdownChallenges);
     }
   }
 }

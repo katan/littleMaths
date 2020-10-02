@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { SettingsService } from '@app/services/settings.service';
 import { NavParams } from '@ionic/angular';
+
+import { LocalStorageService } from '@app/services/local-storage.service';
 import { DashboardPage } from '../dashboard.page';
 
 @Component({
@@ -16,12 +17,12 @@ export class MultiplicationPopoverComponent implements OnInit {
   constructor(
     private navParams: NavParams,
     private router: Router,
-    private settings: SettingsService
+    private localStorage: LocalStorageService
   ) { }
 
   ngOnInit() {
-    this.randomChallenges = this.settings.get('randomChallenges');
-    this.countdownChallenges = this.settings.get('countdownChallenges');
+    this.randomChallenges = this.localStorage.get('randomChallenges');
+    this.countdownChallenges = this.localStorage.get('countdownChallenges');
   }
 
   async routerTo(page: string) {

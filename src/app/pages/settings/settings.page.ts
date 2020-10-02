@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { SettingsService } from '@app/services/settings.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { LocalStorageService } from '@app/services/local-storage.service';
 import { ToastController } from '@ionic/angular';
 
 @Component({
@@ -13,22 +13,22 @@ export class SettingsPage implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private settings: SettingsService,
-    private toast: ToastController
+    private toast: ToastController,
+    private localStorage: LocalStorageService
   ) { }
 
   ngOnInit() {
     this.settingsForm = this.fb.group({
-      randomChallenges: [this.settings.get('randomChallenges'), [Validators.required]],
-      countdownChallenges: [this.settings.get('countdownChallenges'), [Validators.required]],
-      languages: [this.settings.get('languages')]
+      randomChallenges: [this.localStorage.get('randomChallenges'), [Validators.required]],
+      countdownChallenges: [this.localStorage.get('countdownChallenges'), [Validators.required]],
+      languages: [this.localStorage.get('languages')]
     });
   }
 
   async submit() {
     if (this.settingsForm.valid) {
-      this.settings.set('randomChallenges', this.settingsForm.get('randomChallenges').value);
-      this.settings.set('countdownChallenges', this.settingsForm.get('countdownChallenges').value);
+      this.localStorage.set('randomChallenges', this.settingsForm.get('randomChallenges').value);
+      this.localStorage.set('countdownChallenges', this.settingsForm.get('countdownChallenges').value);
 
       const toast = await this.toast.create({
         message: 'Updated successfully',

@@ -1,11 +1,10 @@
 import { Inject, Injectable } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 
-declare var window: any;
 @Injectable({
   providedIn: 'root',
 })
-export class SettingsService {
+export class LocalStorageService {
   hasSettings: boolean;
   private window: Window;
 

@@ -1,26 +1,28 @@
 import { Component, ViewChild } from '@angular/core';
-import { IteratorService } from '@app/services/iterator.service';
-import { SettingsService } from '@app/services/settings.service';
-import { Challenge } from '@app/shared/challenge.class';
-import { Operation } from '@app/shared/constants';
-import { VirtualKeyboardComponent } from '@app/shared/virtual-keyboard/virtual-keyboard.component';
 import { ViewDidEnter, ViewDidLeave } from '@ionic/angular';
+
+import { ChallengeService } from '@app/services/challenge.service';
+import { LocalStorageService } from '@app/services/local-storage.service';
+import { Challenge } from '@app/shared/challenge.class';
+
+import { VirtualKeyboardComponent } from '@app/shared/virtual-keyboard/virtual-keyboard.component';
+import { Operation } from '@app/shared/constants';
 
 @Component({
   selector: 'app-countdown-challenge',
   templateUrl: './countdown-challenge.page.html',
   styleUrls: ['./countdown-challenge.page.scss'],
-  providers: [IteratorService]
+  providers: [ChallengeService]
 })
 export class CountdownChallengePage extends Challenge implements ViewDidEnter, ViewDidLeave {
 
   @ViewChild('keyboard') keyboard: VirtualKeyboardComponent;
 
   constructor(
-    iteratorService: IteratorService,
-    private settingsService: SettingsService
+    challengeService: ChallengeService,
+    private localStorage: LocalStorageService
   ) {
-    super(Operation.multiplication, iteratorService);
+    super(Operation.multiplication, challengeService);
   }
 
   ionViewDidEnter() {
@@ -28,8 +30,8 @@ export class CountdownChallengePage extends Challenge implements ViewDidEnter, V
   }
 
   ionViewDidLeave() {
-    this.iteratorService.clear();
-    this.iteratorService.stopCountdown();
+    this.challengeService.clear();
+    this.challengeService.stopCountdown();
   }
 
   nextQuestion() {
@@ -39,24 +41,24 @@ export class CountdownChallengePage extends Challenge implements ViewDidEnter, V
 
   newChallenge() {
     this.userValue = null;
-    this.iteratorService.clear();
+    this.challengeService.clear();
     this.initialize();
   }
 
   private initialize() {
     this.countdownStart = true;
-    this.iteratorService.startTime();
+    this.challengeService.startTime();
     super.generateQuestion();
     this.startCountDown();
   }
 
   private startCountDown() {
-    this.iteratorService.startCountdown(this.settingsService.get('countdownChallenges'));
-    this.iteratorService.countdown$.subscribe(
+    this.challengeService.startCountdown(this.localStorage.get('countdownChallenges'));
+    this.challengeService.countdown$.subscribe(
       () => {
         this.countdownStart = false;
-        this.timeElapsed = this.iteratorService.getTimeElapsed();
-        this.iteratorService.stopCountdown();
+        this.timeElapsed = this.challengeService.getTimeElapsed();
+        this.challengeService.stopCountdown();
       }
     );
   }

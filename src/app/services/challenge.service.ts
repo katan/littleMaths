@@ -4,7 +4,7 @@ import { Operation } from '@app/shared/constants';
 import { interval, Subject, Subscription } from 'rxjs';
 
 @Injectable()
-export class IteratorService {
+export class ChallengeService {
   countdown: number;
   countdown$: Subject<void> = new Subject();
   iterations = 0;

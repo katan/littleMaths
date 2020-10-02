@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
-import { IteratorService } from '@app/services/iterator.service';
-import { SettingsService } from '@app/services/settings.service';
+import { ChallengeService } from '@app/services/challenge.service';
+import { LocalStorageService } from '@app/services/local-storage.service';
 import { Challenge } from '@app/shared/challenge.class';
 import { Operation } from '@app/shared/constants';
 import { VirtualKeyboardComponent } from '@app/shared/virtual-keyboard/virtual-keyboard.component';
@@ -10,17 +10,17 @@ import { ViewDidEnter, ViewDidLeave } from '@ionic/angular';
   selector: 'app-random-challenge',
   templateUrl: './random-challenge.page.html',
   styleUrls: ['./random-challenge.page.scss'],
-  providers: [IteratorService]
+  providers: [ChallengeService]
 })
 export class RandomChallengePage extends Challenge implements ViewDidEnter, ViewDidLeave {
 
   @ViewChild('keyboard') keyboard: VirtualKeyboardComponent;
 
   constructor(
-    protected iteratorService: IteratorService,
-    private settingsService: SettingsService
+    protected challenggeService: ChallengeService,
+    private localStorage: LocalStorageService
   ) {
-    super(Operation.multiplication, iteratorService);
+    super(Operation.multiplication, challenggeService);
   }
 
   ionViewDidEnter() {
@@ -28,7 +28,7 @@ export class RandomChallengePage extends Challenge implements ViewDidEnter, View
   }
 
   ionViewDidLeave() {
-    this.iteratorService.clear();
+    this.challenggeService.clear();
   }
 
   nextQuestion() {
@@ -38,13 +38,13 @@ export class RandomChallengePage extends Challenge implements ViewDidEnter, View
 
   newChallenge() {
     this.userValue = null;
-    this.iteratorService.clear();
+    this.challenggeService.clear();
     this.initialize();
   }
 
   private initialize() {
-    this.iteratorService.iterations = this.settingsService.get('randomChallenges');
-    this.iteratorService.startTime();
+    this.challenggeService.iterations = this.localStorage.get('randomChallenges');
+    this.challenggeService.startTime();
     super.generateQuestion();
   }
 }

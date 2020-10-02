@@ -2,11 +2,7 @@
   <ion-header>
     <ion-toolbar>
       <ion-title>
-        <a routerLink="/tabs/dashboard">
-          <ion-icon name="apps"></ion-icon>
-          <span>Dashboard</span>
-        </a>
-        <span> | Countdown challenge </span>
+        <span>Countdown challenge </span>
       </ion-title>
     </ion-toolbar>
   </ion-header>
@@ -25,9 +21,9 @@
       <app-show-results
         [countdown]="true"
         [timeElapsed]="timeElapsed"
-        [questions]="iteratorService.questions"
-        [userAnswers]="iteratorService.userAnswers"
-        [correctAnswers]="iteratorService.correctAnswers">
+        [questions]="challengeService.questions"
+        [userAnswers]="challengeService.userAnswers"
+        [correctAnswers]="challengeService.correctAnswers">
       </app-show-results>
     </ion-row>
   </ion-content>

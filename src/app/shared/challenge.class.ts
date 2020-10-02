@@ -1,4 +1,4 @@
-import { IteratorService } from '@app/services/iterator.service';
+import { ChallengeService } from '@app/services/challenge.service';
 import { Operation } from './constants';
 
 export class Challenge {
@@ -9,20 +9,20 @@ export class Challenge {
     timeElapsed: number;
 
     get totalIterations(): number {
-        return this.iteratorService.iterations;
+        return this.challengeService.iterations;
     }
 
     get currentIteration(): number {
-        return this.iteratorService.currentIteration + 1;
+        return this.challengeService.currentIteration + 1;
     }
 
     get countdown(): number {
-        return this.iteratorService.countdown;
+        return this.challengeService.countdown;
     }
 
     constructor(
         protected operation: Operation,
-        protected iteratorService: IteratorService
+        protected challengeService: ChallengeService
     ) { }
 
     protected insertValue(value: number) {
@@ -31,12 +31,12 @@ export class Challenge {
 
     protected insertResult(value: number) {
         this.userAnswer = value;
-        this.iteratorService.addAnswer(value);
+        this.challengeService.addAnswer(value);
 
         if (this.currentIteration <= this.totalIterations || this.countdownStart) {
             this.nextQuestion();
         } else {
-            this.timeElapsed = this.iteratorService.getTimeElapsed();
+            this.timeElapsed = this.challengeService.getTimeElapsed();
         }
     }
 
@@ -46,7 +46,7 @@ export class Challenge {
     }
 
     protected generateQuestion() {
-        this.iteratorService.generateQuestions(this.operation);
-        this.question = this.iteratorService.questions[this.iteratorService.currentIteration];
+        this.challengeService.generateQuestions(this.operation);
+        this.question = this.challengeService.questions[this.challengeService.currentIteration];
     }
 }
