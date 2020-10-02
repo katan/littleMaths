@@ -6,7 +6,7 @@ import { interval, Subject, Subscription } from 'rxjs';
 @Injectable()
 export class ChallengeService {
   countdown: number;
-  countdown$: Subject<void> = new Subject();
+  countdown$: Subject<void>;
   iterations = 0;
   currentIteration = 0;
   questions: string[] = [];
@@ -24,6 +24,8 @@ export class ChallengeService {
 
   startCountdown(countdown: number) {
     this.countdown = countdown;
+    this.countdown$ = new Subject();
+
     this.timer = interval(1000).subscribe(
       () => {
         countdown--;
