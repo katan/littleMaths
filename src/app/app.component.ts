@@ -4,7 +4,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { LocalStorageService } from './services/local-storage.service';
-import { appConfig } from './app.config';
+import { appConfig } from './shared/constants';
 
 @Component({
   selector: 'app-root',
@@ -32,8 +32,8 @@ export class AppComponent {
   private createSettings() {
     if (!this.localStorage.hasSettings) {
       this.localStorage.set('version', appConfig.version);
-      this.localStorage.set('languages', JSON.stringify(appConfig.languages));
-      this.localStorage.set('cultureCodes', JSON.stringify(appConfig.cultureCodes));
+      this.localStorage.set('languages', appConfig.languages);
+      this.localStorage.set('cultureCodes', appConfig.cultureCodes);
       this.localStorage.set('currentLanguage', appConfig.currentLanguage);
       this.localStorage.set('randomChallenges', appConfig.randomChallenges);
       this.localStorage.set('countdownChallenges', appConfig.countdownChallenges);
