@@ -4,6 +4,6 @@ export class Stat {
     totalQuestions: number;
     correctAnswers: number;
     challengeType: ChallengeType;
+    timeElapsed: number;
     countdown?: number;
-    timeElapsed?: number;
 }

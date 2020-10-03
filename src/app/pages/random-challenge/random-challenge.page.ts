@@ -20,7 +20,7 @@ export class RandomChallengePage extends Challenge implements ViewDidEnter, View
     protected challenggeService: ChallengeService,
     private localStorage: LocalStorageService
   ) {
-    super(Operation.multiplication, challenggeService);
+    super(Operation.multiplication, 'random', challenggeService);
   }
 
   ionViewDidEnter() {

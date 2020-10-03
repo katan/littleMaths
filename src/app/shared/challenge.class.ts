@@ -1,6 +1,7 @@
+import { Stat } from '@app/models/stats.model';
 import { ChallengeService } from '@app/services/challenge.service';
 import { interval, Subscription } from 'rxjs';
-import { Operation } from './constants';
+import { ChallengeType, Operation } from './constants';
 
 export class Challenge {
     enableNewChallenge = false;
@@ -25,6 +26,7 @@ export class Challenge {
 
     constructor(
         protected operation: Operation,
+        protected challengeType: ChallengeType,
         protected challengeService: ChallengeService
     ) { }
 
@@ -41,6 +43,7 @@ export class Challenge {
         } else {
             this.timeElapsed = this.challengeService.getTimeElapsed();
             this.waitToStartNewChallenge();
+            this.saveStats();
         }
     }
 
@@ -72,5 +75,26 @@ export class Challenge {
                 }
             }
         );
+    }
+
+    protected saveStats() {
+        const stats = new Stat();
+        stats.totalQuestions = this.challengeService.questions.length;
+        stats.challengeType = this.challengeType;
+        stats.correctAnswers = this.getCorrectAnswers();
+        stats.timeElapsed = this.timeElapsed;
+        stats.countdown = this.challengeService.originalCountdown;
+
+        this.challengeService.saveStats(this.operation, stats);
+    }
+
+    private getCorrectAnswers() {
+        let correctAnswersCount = 0;
+        this.challengeService.userAnswers.forEach((answer: number, index: number) => {
+            if (answer === this.challengeService.correctAnswers[index]) {
+              correctAnswersCount++;
+            }
+        });
+        return correctAnswersCount;
     }
 }

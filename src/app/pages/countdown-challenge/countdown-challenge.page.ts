@@ -22,7 +22,7 @@ export class CountdownChallengePage extends Challenge implements ViewDidEnter, V
     challengeService: ChallengeService,
     private localStorage: LocalStorageService
   ) {
-    super(Operation.multiplication, challengeService);
+    super(Operation.multiplication, 'countdown', challengeService);
   }
 
   ionViewDidEnter() {
@@ -59,6 +59,7 @@ export class CountdownChallengePage extends Challenge implements ViewDidEnter, V
         this.timeElapsed = this.challengeService.getTimeElapsed();
         this.challengeService.stopCountdown();
         this.waitToStartNewChallenge();
+        this.saveStats();
       }
     );
   }

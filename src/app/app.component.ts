@@ -31,6 +31,7 @@ export class AppComponent {
 
   private createSettings() {
     if (!this.localStorage.hasSettings) {
+      this.localStorage.set('stats', {});
       this.localStorage.set('version', appConfig.version);
       this.localStorage.set('languages', appConfig.languages);
       this.localStorage.set('cultureCodes', appConfig.cultureCodes);

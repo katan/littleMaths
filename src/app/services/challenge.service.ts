@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
-
-import { Operation } from '@app/shared/constants';
 import { interval, Subject, Subscription } from 'rxjs';
+
+import { LocalStorageService } from './local-storage.service';
+import { Operation } from '@app/shared/constants';
+import { Stat } from '@app/models/stats.model';
 
 @Injectable()
 export class ChallengeService {
   countdown: number;
+  originalCountdown: number;
   countdown$: Subject<void>;
   iterations = 0;
   currentIteration = 0;
@@ -16,7 +19,7 @@ export class ChallengeService {
 
   private timer: Subscription;
 
-  constructor() { }
+  constructor(private localStorage: LocalStorageService) { }
 
   startTime() {
     this.time = new Date();
@@ -24,6 +27,7 @@ export class ChallengeService {
 
   startCountdown(countdown: number) {
     this.countdown = countdown;
+    this.originalCountdown = countdown;
     this.countdown$ = new Subject();
 
     this.timer = interval(1000).subscribe(
@@ -72,6 +76,10 @@ export class ChallengeService {
     const endTime = new Date();
     const timeDiff = (endTime.getTime() - this.time.getTime()) / 1000;
     return Math.round(timeDiff);
+  }
+
+  saveStats(operation: Operation, stat: Stat): void {
+    this.localStorage.push('stats', operation, stat);
   }
 
   private generateMultiplication(base: number): Array<number | string> {
