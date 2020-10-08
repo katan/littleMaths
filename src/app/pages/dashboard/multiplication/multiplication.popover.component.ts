@@ -28,6 +28,6 @@ export class MultiplicationPopoverComponent implements OnInit {
   async routerTo(page: string) {
     const dashboardPage: DashboardPage = this.navParams.get('dashboardPage');
     dashboardPage.dismissPopover();
-    this.router.navigateByUrl(`/tabs/${page}`);
+    this.router.navigateByUrl(`/tabs/multiplication/${page}`);
   }
 }

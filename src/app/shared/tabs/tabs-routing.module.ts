@@ -24,21 +24,41 @@ const routes: Routes = [
         loadChildren: () => import('@pages/settings/settings.module').then(m => m.SettingsPageModule)
       },
       {
-        path: 'multiplication-tables',
-        loadChildren: () => import('@pages/multiplication-tables/multiplication-tables.module').then(m => m.MultiplicationTablesModule)
-      },
-      {
-        path: 'random-challenge',
-        loadChildren: () => import('@pages/random-challenge/random-challenge.module').then( m => m.RandomChallengePageModule)
-      },
-      {
-        path: 'countdown-challenge',
-        loadChildren: () => import('@pages/countdown-challenge/countdown-challenge.module').then( m => m.CountdownChallengePageModule)
-      },
-      {
         path: '',
         redirectTo: '/tabs/dashboard',
         pathMatch: 'full'
+      },
+      // Summation paths
+      {
+        path: 'summation',
+        children: [
+          {
+            path: 'random-challenge',
+            loadChildren: () => import('@pages/multiplication/random-challenge/random-challenge.module')
+              .then( m => m.RandomChallengePageModule)
+          },
+        ]
+      },
+      // Multiplication paths
+      {
+        path: 'multiplication',
+        children: [
+          {
+            path: 'multiplication-tables',
+            loadChildren: () => import('@pages/multiplication/multiplication-tables/multiplication-tables.module')
+              .then(m => m.MultiplicationTablesModule)
+          },
+          {
+            path: 'random-challenge',
+            loadChildren: () => import('@pages/multiplication/random-challenge/random-challenge.module')
+              .then( m => m.RandomChallengePageModule)
+          },
+          {
+            path: 'countdown-challenge',
+            loadChildren: () => import('@pages/multiplication/countdown-challenge/countdown-challenge.module')
+              .then( m => m.CountdownChallengePageModule)
+          }
+        ]
       }
     ]
   },

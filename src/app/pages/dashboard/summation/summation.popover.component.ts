@@ -30,7 +30,7 @@ export class SummationPopoverComponent implements OnInit {
   async routerTo(page: string) {
     const dashboardPage: DashboardPage = this.navParams.get('dashboardPage');
     dashboardPage.dismissPopover();
-    this.router.navigateByUrl(`/tabs/${page}`);
+    this.router.navigateByUrl(`/tabs/summation/${page}`);
   }
 
 }
