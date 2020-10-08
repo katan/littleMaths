@@ -31,13 +31,14 @@ export class AppComponent {
 
   private createSettings() {
     if (!this.localStorage.hasSettings) {
+      // Create stats storage
       this.localStorage.set('stats', {});
-      this.localStorage.set('version', appConfig.version);
-      this.localStorage.set('languages', appConfig.languages);
-      this.localStorage.set('cultureCodes', appConfig.cultureCodes);
-      this.localStorage.set('currentLanguage', appConfig.currentLanguage);
-      this.localStorage.set('randomChallenges', appConfig.randomChallenges);
-      this.localStorage.set('countdownChallenges', appConfig.countdownChallenges);
+
+      for (const key in appConfig) {
+        if (appConfig.hasOwnProperty(key)) {
+          this.localStorage.set(key, appConfig[key]);
+        }
+      }
     }
   }
 }
