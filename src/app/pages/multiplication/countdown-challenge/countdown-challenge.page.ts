@@ -15,6 +15,7 @@ import { Operation } from '@app/shared/constants';
   providers: [ChallengeService]
 })
 export class CountdownChallengePage extends Challenge implements ViewDidEnter, ViewDidLeave {
+  operation = Operation.multiplication;
 
   @ViewChild('keyboard') keyboard: VirtualKeyboardComponent;
 

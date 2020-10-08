@@ -13,6 +13,7 @@ import { ViewDidEnter, ViewDidLeave } from '@ionic/angular';
   providers: [ChallengeService]
 })
 export class RandomChallengePage extends Challenge implements ViewDidEnter, ViewDidLeave {
+  operation = Operation.multiplication;
 
   @ViewChild('keyboard') keyboard: VirtualKeyboardComponent;
 

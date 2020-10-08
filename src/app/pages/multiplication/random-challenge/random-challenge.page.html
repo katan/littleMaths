@@ -11,7 +11,7 @@
 <ion-content>
   <!-- questions -->
   <app-show-question *ngIf="currentIteration <= totalIterations"
-    [question]="question" [answer]="userValue">
+    [question]="question" [answer]="userValue" [operation]="operation">
   </app-show-question>
 
   <!-- results -->
