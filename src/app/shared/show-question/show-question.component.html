@@ -1,7 +1,20 @@
 <div class="question-wrapper">
   <div>
     <div class="question">
-      {{ question }}
+      <!-- vertical view -->
+      <ng-container *ngIf="showVerticalView">
+        <div class="remainder">
+          <select *ngFor="let value of getValues()">
+            <option *ngFor="let i of [0,1,2,3,4,5,6,7,8,9]" [value]="i">{{ i }}</option>
+          </select>
+        </div>
+        <div [innerHTML]="generateVerticalView()" class="vertical-view"></div>
+      </ng-container>
+
+      <!-- horizontal view -->
+      <ng-container *ngIf="!showVerticalView">
+        {{ question }}
+      </ng-container>
     </div>
     <div class="equal"> = </div>
     <div class="answer">
