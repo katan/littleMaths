@@ -16,10 +16,20 @@ export class ChallengeService {
   correctAnswers: number[] = [];
   userAnswers: number[] = [];
   time: Date;
+  // From localstorage
+  minDigits: number;
+  maxDigits: number;
+  maxOperations: number;
 
   private timer: Subscription;
 
-  constructor(private localStorage: LocalStorageService) { }
+  constructor(private localStorage: LocalStorageService) {
+    this.minDigits = this.localStorage.get('minDigits');
+    this.maxDigits = this.localStorage.get('maxDigits');
+    this.maxOperations = this.localStorage.get('maxOperations');
+
+    console.log(this.minDigits, this.maxDigits, this.maxOperations);
+  }
 
   startTime() {
     this.time = new Date();
@@ -50,17 +60,20 @@ export class ChallengeService {
     this.currentIteration++;
   }
 
-  generateQuestions(operation: Operation, base?: number) {
+  generateQuestions(operation: Operation) {
+    let values: Array<number | string>;
+
     switch (operation) {
       case Operation.summation:
+        values = this.generateSummation();
         break;
       case Operation.subtraction:
         break;
       case Operation.multiplication:
-        const values: Array<number | string> = this.generateMultiplication(base);
-        this.saveQuestionAndAnswer(values[0] as string, values[1] as number);
+        values = this.generateMultiplication();
         break;
     }
+    this.saveQuestionAndAnswer(values[0] as string, values[1] as number);
   }
 
   clear() {
@@ -82,8 +95,26 @@ export class ChallengeService {
     this.localStorage.push('stats', operation, stat);
   }
 
-  private generateMultiplication(base: number): Array<number | string> {
-    const value1 = base && base || this.getRandomInt(1, 10);
+  private generateSummation(): Array<number | string> {
+    let operationString = '';
+    let operationResult = 0;
+
+    for (let i = 0; i < this.maxOperations; i++) {
+      const operation = this.getRandomInt(
+        parseInt('1'.repeat(this.minDigits), 10),
+        parseInt('9'.repeat(this.maxDigits), 10)
+      );
+
+      operationResult += operation;
+      operationString += (i < (this.maxOperations - 1)) ? `${operation} + ` : operation;
+
+    }
+
+    return [operationString, operationResult];
+  }
+
+  private generateMultiplication(base?: number[]): Array<number | string> {
+    const value1 = base && this.getRandomInt(base[0], base[1]) || this.getRandomInt(1, 10);
     const value2 = this.getRandomInt(1, 10);
     return [`${value1} ${Operation.multiplication} ${value2}`, value1 * value2];
   }
