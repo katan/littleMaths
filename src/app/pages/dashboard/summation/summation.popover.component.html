@@ -1,0 +1,14 @@
+<ion-list>
+  <ion-list-header>Summations</ion-list-header>
+  <ion-item button>New challenge</ion-item>
+  <ion-item button (click)="routerTo('random-challenge')">
+    <a>
+      Random challenge ({{ minDigits }}-{{ maxDigits }} digits)
+    </a>
+  </ion-item>
+  <ion-item button (click)="routerTo('countdown-challenge')">
+    <a>
+      Countdown challenge ({{ countdownChallenges }}s)
+    </a>
+  </ion-item>
+</ion-list>

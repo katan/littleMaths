@@ -2,9 +2,11 @@ import { Component } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 
 import { MultiplicationPopoverComponent } from './multiplication/multiplication.popover.component';
+import { SummationPopoverComponent } from './summation/summation.popover.component';
 
 const Maths = {
   multiplication: MultiplicationPopoverComponent,
+  summation: SummationPopoverComponent
 };
 
 @Component({
