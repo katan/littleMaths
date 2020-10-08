@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      <span> Random Challenge
+        {{ currentIteration <= totalIterations && '('+currentIteration+'/'+totalIterations+')' || ' Results' }}
+      </span>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- questions -->
+  <app-show-question *ngIf="currentIteration <= totalIterations"
+    [question]="question" [answer]="userValue" [operation]="operation">
+  </app-show-question>
+
+  <!-- results -->
+  <ion-row *ngIf="currentIteration > totalIterations">
+    <app-show-results
+      [timeElapsed]="timeElapsed"
+      [questions]="challengeService.questions"
+      [userAnswers]="challengeService.userAnswers"
+      [correctAnswers]="challengeService.correctAnswers">
+    </app-show-results>
+  </ion-row>
+</ion-content>
+
+<ion-footer class="challenge">
+  <!-- virtual keyboard -->
+  <ng-container *ngIf="currentIteration <= totalIterations">
+    <app-virtual-keyboard #keyboard (value)="insertValue($event)" (results)="insertResult($event)"></app-virtual-keyboard>
+  </ng-container>
+
+  <!-- New challenge -->
+  <ng-container *ngIf="currentIteration > totalIterations">
+    <app-show-new-challenge (newChallenge)="newChallenge()"
+        [enableNewChallenge]="enableNewChallenge"
+        [countdown]="waitToEnableNewChallenge">
+      </app-show-new-challenge>
+  </ng-container>
+
+</ion-footer>

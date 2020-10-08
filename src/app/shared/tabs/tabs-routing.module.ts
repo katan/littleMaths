@@ -34,7 +34,7 @@ const routes: Routes = [
         children: [
           {
             path: 'random-challenge',
-            loadChildren: () => import('@pages/multiplication/random-challenge/random-challenge.module')
+            loadChildren: () => import('@pages/summation/random-challenge/random-challenge.module')
               .then( m => m.RandomChallengePageModule)
           },
         ]
